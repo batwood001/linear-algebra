@@ -35,11 +35,14 @@ class Vector(object):
         new_coords = [dim * multiplier for dim in self.coordinates]
         return Vector(new_coords)
 
-    def mag(self):
+    def magnitude(self):
         return math.sqrt(sum([x ** 2 for x in self.coordinates]))
 
-    def direction(self):
-        return self.__mul__(1 / self.mag())
+    def normalized(self):
+        try:
+            return self.__mul__(1 / self.magnitude())
+        except ZeroDivisionError:
+            raise Exception('Cannot normalize the zero vector')
 
 
 # a = Vector([8.218, -9.341])
@@ -62,4 +65,4 @@ class Vector(object):
 # print(a.mag())
 
 a = Vector([1.996, 3.108, -4.554])
-print(a.direction())
+print(a.normalized())
