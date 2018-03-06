@@ -1,3 +1,5 @@
+import math
+
 class Vector(object):
     def __init__(self, coordinates):
         try:
@@ -29,19 +31,35 @@ class Vector(object):
         return Vector(new_coords)
 
     def __mul__(self, multiplier):
+        print('multiplier', multiplier)
         new_coords = [dim * multiplier for dim in self.coordinates]
         return Vector(new_coords)
 
+    def mag(self):
+        return math.sqrt(sum([x ** 2 for x in self.coordinates]))
 
-a = Vector([8.218, -9.341])
-b = Vector([-1.129, 2.111])
-print(a + b)
-
-
-a = Vector([7.119, 8.215])
-b = Vector([-8.223, 0.878])
-print(a - b)
+    def direction(self):
+        return self.__mul__(1 / self.mag())
 
 
-a = Vector([1.671, -1.012, -0.318])
-print(a * 7.41)
+# a = Vector([8.218, -9.341])
+# b = Vector([-1.129, 2.111])
+# print(a + b)
+
+
+# a = Vector([7.119, 8.215])
+# b = Vector([-8.223, 0.878])
+# print(a - b)
+
+
+# a = Vector([1.671, -1.012, -0.318])
+# print(a * 7.41)
+
+# a = Vector([-0.221, 7.437])
+# print(a.mag())
+
+# a = Vector([8.813, -1.331, -6.247])
+# print(a.mag())
+
+a = Vector([1.996, 3.108, -4.554])
+print(a.direction())
