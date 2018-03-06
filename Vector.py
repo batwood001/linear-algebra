@@ -21,19 +21,16 @@ class Vector(object):
         return self.coordinates == v.coordinates
 
     def __add__(self, v):
-        sum = []
-        for i in range(len(self.coordinates)):
-            sum.append(self.coordinates[i] + v.coordinates[i])
-        return sum
+        new_coords = [x + y for x, y in zip(self.coordinates, v.coordinates)]
+        return Vector(new_coords)
 
     def __sub__(self, v):
-        sum = []
-        for i in range(len(self.coordinates)):
-            sum.append(self.coordinates[i] - v.coordinates[i])
-        return sum
+        new_coords = [x - y for x, y in zip(self.coordinates, v.coordinates)]
+        return Vector(new_coords)
 
     def __mul__(self, multiplier):
-        return [dim * multiplier for dim in self.coordinates]
+        new_coords = [dim * multiplier for dim in self.coordinates]
+        return Vector(new_coords)
 
 
 a = Vector([8.218, -9.341])
@@ -41,11 +38,10 @@ b = Vector([-1.129, 2.111])
 print(a + b)
 
 
-# a = Vector([7.119, 8.215])
-# b = Vector([-8.223, 0.878])
-# print(a - b)
+a = Vector([7.119, 8.215])
+b = Vector([-8.223, 0.878])
+print(a - b)
 
 
-# a = Vector([1.671, -1.012, -0.318])
-
-# print(a * 7.41)
+a = Vector([1.671, -1.012, -0.318])
+print(a * 7.41)
